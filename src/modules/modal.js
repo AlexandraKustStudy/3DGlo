@@ -1,6 +1,5 @@
 const modal = () => {
 	const modal = document.querySelector('.popup')
-	const btns = document.querySelectorAll('.popup-btn')
 	const closeBtn = modal.querySelector('.popup-close')
 
 	function fadeBlock(block, isFadeIn) {
@@ -26,16 +25,17 @@ const modal = () => {
 		requestAnimationFrame(animate);
 	}
 
+	document.addEventListener('click', (e) => {
+		const target = e.target
 
-	btns.forEach(btn => {
-		btn.addEventListener('click', () => {
-
+		if (target.closest('.popup-btn')) {
 			if (window.innerWidth > 768) {
 				fadeBlock(modal, true)
 			} else {
 				modal.style.display = 'block'
 			};
-		})
+		}
+
 	})
 
 	closeBtn.addEventListener('click', () => {
