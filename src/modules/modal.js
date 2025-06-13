@@ -1,6 +1,5 @@
 const modal = () => {
 	const modal = document.querySelector('.popup')
-	const closeBtn = modal.querySelector('.popup-close')
 
 	function fadeBlock(block, isFadeIn) {
 		let startOpacity = isFadeIn ? 0 : 1;
@@ -38,14 +37,16 @@ const modal = () => {
 
 	})
 
-	closeBtn.addEventListener('click', () => {
-
-		if (window.innerWidth > 768) {
-			fadeBlock(modal, false)
-		} else {
-			modal.style.display = ''
+	modal.addEventListener('click', (e) => {
+		if (!e.target.closest('.popup-content') || e.target.closest('.popup-close')) {
+			if (window.innerWidth > 768) {
+				fadeBlock(modal, false)
+			} else {
+				modal.style.display = ''
+			}
 		}
 	})
+
 }
 
 export default modal
